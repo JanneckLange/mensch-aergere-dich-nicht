@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Mensch ärgere dich nicht",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "config.json": "0.0.4",
+    "express": "^4.16.4",
+    "html-entities": "^1.2.1",
+    "node-api": "0.0.1",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.15.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JanneckLange/mensch-aergere-dich-nicht.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JanneckLange/mensch-aergere-dich-nicht/issues"
+  },
+  "homepage": "https://github.com/JanneckLange/mensch-aergere-dich-nicht#readme"
+}
