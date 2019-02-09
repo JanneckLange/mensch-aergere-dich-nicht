@@ -1,5 +1,7 @@
-let config = {};
 
+let socket;
+
+let config = {};
 $.ajax({
     url: '../config.json',
     async: false,
@@ -8,30 +10,27 @@ $.ajax({
     }
 });
 
+
+
 $(document).ready(function () {
-    $.ajax({//Get Lobby data from backend
-        type: "GET",
-        url: config.server.host + ':' + config.server.port + "/lobby",
-        data: '',// now data come in this function
-        contentType: "application/json; charset=utf-8",
-        crossDomain: true,
-        dataType: "json",
-        success: function (data, status, jqXHR) {
-            console.log(data)
-            for (let i = 0; i < data.games.length; i++) {
-                generateGameList(data.games[i])
-            }
+    socket = io();
 
-        },
-
-        error: function (jqXHR, status) {
-            // error handler
-            console.log(jqXHR);
-            console.log('fail: ' + status.code);
+    socket.on('lobbystatus', (data) => {
+        for (let i = 0; i < data.games.length; i++) {
+            generateGameList(data.games[i])
         }
+    });
+
+    socket.on('connect_error', () => {
+        console.log('Connection lost')
     });
 });
 
+
+/**
+ * todo delete old dives before creating new
+ * @param game
+ */
 function generateGameList(game) {
     let game_div = document.createElement("div");
     game_div.classList.add('gameElement');
@@ -55,22 +54,5 @@ function generateGameList(game) {
 }
 
 function joinGame(id) {
-    $.ajax({//Get Lobby data from backend
-        type: "POST",
-        url: config.server.host + ':' + config.server.port + "/lobby",
-        data: id,// now data come in this function
-        contentType: "application/json; charset=utf-8",
-        crossDomain: true,
-        dataType: "json",
-        success: function (data, status, jqXHR) {
-            console.log(data)
-
-        },
-
-        error: function (jqXHR, status) {
-            // error handler
-            console.log(jqXHR);
-            console.log('fail: ' + status.code);
-        }
-    });
+    socket.emit('joinRoom',id);
 }

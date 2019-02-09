@@ -4,7 +4,7 @@
   "description": "Mensch ärgere dich nicht",
   "main": "server.js",
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.18.3",
     "config.json": "0.0.4",
     "express": "^4.16.4",
     "html-entities": "^1.2.1",

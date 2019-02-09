@@ -5,5 +5,9 @@
   },
   "lobby":{
     "public":"client_lobby.html"
+  },
+  "limits": {
+    "max_player_in_lobby": 10,
+    "max_games_created": 10
   }
 }
